@@ -1,3 +1,4 @@
+require('./config/config');
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
@@ -44,8 +45,8 @@ app.delete('/usuario', function (req, res) {
     res.json('delete Usuário funcionando');
 });
  
-app.listen(3000, () =>{
-    console.log('Escutando na porta: ', 3000);
+app.listen(process.env.PORT, () =>{
+    console.log('Escutando na porta: ', process.env.PORT);
 });
 
 //No Postman, realize o seguinte teste:
