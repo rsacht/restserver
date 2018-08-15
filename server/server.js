@@ -1,5 +1,13 @@
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
+
+//MIDDLEWARES - "use" sempre que houver petições passarão por eles
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+ 
+// parse application/json
+app.use(bodyParser.json())
 
 //Consultar usuário
 app.get('/usuario', function (req, res) {
@@ -7,7 +15,13 @@ app.get('/usuario', function (req, res) {
 });
 //Criar usuário
 app.post('/usuario', function (req, res) {
-    res.json('post Usuário funcionando');
+    //"body" será processado sempre que o body-parser processe 
+    //um payload que receba as petições
+    let body = req.body;
+
+    res.json({
+        usuario:body
+    });
   });
 //Atualizar usuário
 app.put('/usuario/:id', function (req, res) {
@@ -26,7 +40,15 @@ app.listen(3000, () =>{
     console.log('Escutando na porta: ', 3000);
 });
 
-//No Postman, realize testes com alterando valores no local de id:
-//Exemplos:
-    //http://localhost:3000/usuario/1354
-    //http://localhost:3000/usuario/1208
+//No Postman, realize o seguinte teste:
+    //Em Body selecione: x-www-form-urlencoded
+    //key:nome  value:Rodrigo
+    //key:idade  value:35
+    //POST: http://localhost:3000/usuario
+//Retorno:
+// {
+//     "body": {
+//         "nome": "Rodrigo",
+//         "idade": "35"
+//     }
+// }
