@@ -1,16 +1,26 @@
 const express = require('express');
 const app = express();
- 
-app.get('/', function (req, res) {
-  res.json('Hello World')
-})
+
+//Consultar usuário
+app.get('/usuario', function (req, res) {
+  res.json('get Usuário funcionando')
+});
+//Criar usuário
+app.post('/usuario', function (req, res) {
+    res.json('post Usuário funcionando')
+  });
+//Atualizar usuário
+app.put('/usuario', function (req, res) {
+res.json('put Usuário funcionando')
+});
+//Excluir usuário
+app.delete('/usuario', function (req, res) {
+res.json('delete Usuário funcionando')
+});
  
 app.listen(3000, () =>{
     console.log('Escutando na porta: ', 3000);
 });
 
-//Restarte o servidor com nodemon para restart automático em atualizações: 
-    //Ctrl + C 
-    //nodemon server/server
-//No Postman execute novamente GET: http://localhost:3000
-//Verifique em headers que agora o formato de retorno é Content-Type →application/json; charset=utf-8
+//No Postman, realize testes com cada um dos verbos HTTP em:
+//http://localhost:3000/usuario
