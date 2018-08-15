@@ -19,9 +19,17 @@ app.post('/usuario', function (req, res) {
     //um payload que receba as petições
     let body = req.body;
 
-    res.json({
-        usuario:body
-    });
+    //Validação de formulário
+    if(body.nome === undefined){
+        res.status(400).json({
+            ok:false,
+            mensagem: 'O nome é necessário'
+        });
+    }else{
+        res.json({
+            usuario:body
+        });
+    }
   });
 //Atualizar usuário
 app.put('/usuario/:id', function (req, res) {
@@ -44,11 +52,11 @@ app.listen(3000, () =>{
     //Em Body selecione: x-www-form-urlencoded
     //key:nome  value:Rodrigo
     //key:idade  value:35
+    //Desflague a key nome para que não envie o nome
     //POST: http://localhost:3000/usuario
 //Retorno:
 // {
-//     "body": {
-//         "nome": "Rodrigo",
-//         "idade": "35"
-//     }
+//     "ok": false,
+//     "mensagem": "O nome é necessário"
 // }
+//Status: 400 Bad Request
