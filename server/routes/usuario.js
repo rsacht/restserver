@@ -34,7 +34,7 @@ app.post('/usuario', function (req, res) {
         }
         //Remove o hash da senha antes de retornar os valores ao usuário:
 
-        usuarioDB.password = null;
+        //usuarioDB.password = null;
 
         //Mas se testar no Postman verá que ainda retona o campo password
         //E não queremos que o usuário saiba qual é o nome da coluna em

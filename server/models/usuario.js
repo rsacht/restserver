@@ -42,6 +42,17 @@ let usuarioSchema = new Schema({
     }
 });
 
+//Removendo o campo password da resposta ao imprimir JSON
+usuarioSchema.methods.toJSON = function(){
+    let user = this;
+    let userObject = user.toObject();
+    delete userObject.password;
+
+    return userObject;
+}
+//Teste no Postman o POST de um novo usuário. 
+//O campo password não poderá aparecer na resposta JSON
+
 usuarioSchema.plugin(uniqueValidator, {message:'{PATH} deve ser único'});
 //Teste no Postman: POST {{url}}/usuario
 //Adicione uma role não listada, ex: role SUPER_ROLE
