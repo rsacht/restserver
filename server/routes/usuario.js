@@ -18,7 +18,8 @@ app.get('/usuario', function (req, res) {
 
     //({})Para trazer todos os registros dessa coleção
     //Definindo os campos que queremos mostrar no retorno JSON
-    Usuario.find({}, 'nome email role estado google')
+    //estado:true para trazer apenas usuários ativos
+    Usuario.find({estado:true}, 'nome email role estado google')
         .skip(desde)//Pula x registros
         .limit(limite)//Limita a quantidade de registros
         .exec((err, usuarios) =>{
@@ -28,13 +29,13 @@ app.get('/usuario', function (req, res) {
                     err
                 });
             }
-            Usuario.count({}, (err, conteo)=>{
+            Usuario.count({estado:true}, (err, conteo)=>{
                 res.json({
                     ok: true,
                     usuarios,
                     qtd_total_de_registros: conteo
-                    //No Postman, verifique o retorno da contagem após o ultimo registro
                 });
+                //No Postman, verifique o retorno da contagem após o ultimo registro
             });
         });
   });
@@ -134,7 +135,12 @@ app.put('/usuario/:id', function (req, res) {
 //Excluir usuário
 app.delete('/usuario/:id', function (req, res) {
     let id = req.params.id;
-    Usuario.findByIdAndRemove(id, (err, usuarioExcluido) =>{
+    //Deletando usuário mudando o campo estado para false
+    //Usuario.findByIdAndRemove(id, (err, usuarioExcluido) =>{
+    let mudaEstado ={
+        estado:false
+    }
+    Usuario.findByIdAndUpdate(id, mudaEstado, {new:true},(err, usuarioExcluido) =>{
         if(err){
             return res.status(400).json({
                 ok:false,
