@@ -16,7 +16,7 @@ app.use(require('./routes/usuario'));
 //Efetue o teste no Postman GET: {{url}}/usuario
 
 //Conectando Mongoose e Configuração de mensagem de erro
-mongoose.connect('mongodb://localhost:27017/cafe', (err,res) => {
+mongoose.connect(process.env.URLDB, (err,res) => {
     if(err)throw err;
     console.log('Base de dados ONLINE!');
 });
