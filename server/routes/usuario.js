@@ -27,11 +27,15 @@ app.get('/usuario', function (req, res) {
                     err
                 });
             }
-            res.json({
-                ok: true,
-                usuarios
+            Usuario.count({}, (err, conteo)=>{
+                res.json({
+                    ok: true,
+                    usuarios,
+                    qtd_total_de_registros: conteo
+                    //No Postman, verifique o retorno da contagem após o ultimo registro
+                });
             });
-        })
+        });
   });
 //========== TESTE ==========//
 //Tenha 16 registros no banco de dados
