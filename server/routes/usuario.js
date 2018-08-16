@@ -132,8 +132,33 @@ app.put('/usuario/:id', function (req, res) {
 });
 
 //Excluir usuário
-app.delete('/usuario', function (req, res) {
-    res.json('delete Usuário funcionando');
+app.delete('/usuario/:id', function (req, res) {
+    let id = req.params.id;
+    Usuario.findByIdAndRemove(id, (err, usuarioExcluido) =>{
+        if(err){
+            return res.status(400).json({
+                ok:false,
+                err
+            });
+        };
+        //Se tentar excluir novamente um usuário já excluído
+        if(!usuarioExcluido){
+            return res.status(400).json({
+                ok:false,
+                err:{
+                    message: 'Usuário não encontrado!'
+                }
+            });
+        }
+        res.json({
+            ok:true,
+            usuario: usuarioExcluido
+        })
+    });
 });
+//=========== TESTE ========//
+//Copie um id de usuário no Robo 3T
+//Execute DELETE {{url}}/usuario/id_de_um_usuario
+
 
 module.exports = app;
