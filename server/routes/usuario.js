@@ -1,5 +1,6 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
+const _ = require('underscore');
 
 //Objeto Usuário para trabalhar com os Schemas
 const Usuario = require('../models/usuario');
@@ -52,12 +53,22 @@ app.put('/usuario/:id', function (req, res) {
     //Pega o parâmetro id
     let id = req.params.id;
     //Pega o corpo da requisição
-    let body = req.body;
+    //Define as propriedades que podem ser atualizadas pela função pick de underscore
+    let body = _.pick(req.body,
+        [
+        'nome',
+        'email',
+        'img',
+        'role',
+        'estado'
+        ]
+    );
     //Realiza a atualização das informações no banco de dados
     //Como queremos retornar o usuário atualizado com mongoose
     //De acordo com a documentação adicionamos {new:true} no terceiro parâmetro
     //Para aplicar as validações de Roles vamos adicionar a propriedade runValidators:true
-    Usuario.findByIdAndUpdate(id, body,{new:true, runValidators:true}, (err, usuarioDB) =>{
+    //Context:query é para aplicar a validação a todos os campos inclusive e-mail
+    Usuario.findByIdAndUpdate(id, body,{new:true, runValidators:true, context: 'query'}, (err, usuarioDB) =>{
         if(err){
             return res.status(400).json({
                 ok:false,
