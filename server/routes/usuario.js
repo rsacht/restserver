@@ -49,11 +49,35 @@ app.post('/usuario', function (req, res) {
 
 //Atualizar usuário
 app.put('/usuario/:id', function (req, res) {
+    //Pega o parâmetro id
     let id = req.params.id;
-    //Retorne o que mandei na url
-    res.json({
-        id
-    });
+    //Pega o corpo da requisição
+    let body = req.body;
+    //Realiza a atualização das informações no banco de dados
+    Usuario.findByIdAndUpdate(id, body, (err, usuarioDB) =>{
+        if(err){
+            return res.status(400).json({
+                ok:false,
+                err
+            });
+        }
+        //Retorne o que mandei na url
+        res.json({
+            ok: true,
+            usuario: usuarioDB
+        });
+    })
+    //=========== TESTE =========== //
+    //Copie um id válido no Robo 3T
+    //Faça uma requisição PUT no Postman da seguinte forma:
+    //PUT {{url}}/usuario/cole_o_hash_do_id_aqui
+    //Teremos status 200 porém ainda não realizamos nenhuma alteração
+    //Em Body selecione x-www-form-urlencoded
+    //key: nome Value: Leandro
+    //Execute este PUT 
+    //Note no JSON que não está retornando o usuário atualizado
+    //Verifique no Robo 3T que a alteração ocorreu
+
 });
 
 //Excluir usuário
