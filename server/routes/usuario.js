@@ -8,8 +8,40 @@ const app = express();
 
 //Consultar usuário
 app.get('/usuario', function (req, res) {
-    res.json('get Usuário Local funcionando');
+    //Define a partir de qual registro deve ser efetuada a busca
+    let desde = req.query.desde || 0;
+    //Define a variável como numérica para ser utilizada no skip
+    desde = Number(desde);
+    //Define o limite de objetos por página, default = 5
+    let limite = req.query.limite || 5;
+    limite = Number(limite);
+
+    //({})Para trazer todos os registros dessa coleção
+    Usuario.find({})
+        .skip(desde)//Pula x registros
+        .limit(limite)//Limita a quantidade de registros
+        .exec((err, usuarios) =>{
+            if(err){
+                return res.status(400).json({
+                    ok:false,
+                    err
+                });
+            }
+            res.json({
+                ok: true,
+                usuarios
+            });
+        })
   });
+//========== TESTE ==========//
+//Tenha 16 registros no banco de dados
+//Faça uma busca a partir do segundo registro: {{url}}/usuario?desde=2
+//Faça uma busca a partir de um registro inexistente: {{url}}/usuario?desde=20
+//Faça uma busca limitando em 10:{{url}}/usuario?limite=10
+//Faça uma busca limitando em 10 e a partir do 6 registro:
+//{{url}}/usuario?limite=10&desde=6
+
+
 //Criar usuário
 app.post('/usuario', function (req, res) {
     //"body" será processado sempre que o body-parser processe 
