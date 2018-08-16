@@ -1,5 +1,6 @@
 require('./config/config');
 const express = require('express');
+const mongoose = require('mongoose');
 const app = express();
 const bodyParser = require('body-parser');
 
@@ -12,7 +13,7 @@ app.use(bodyParser.json())
 
 //Consultar usuário
 app.get('/usuario', function (req, res) {
-  res.json('get Usuário funcionando');
+  res.json('get Usuário Local funcionando');
 });
 //Criar usuário
 app.post('/usuario', function (req, res) {
@@ -44,20 +45,10 @@ app.put('/usuario/:id', function (req, res) {
 app.delete('/usuario', function (req, res) {
     res.json('delete Usuário funcionando');
 });
- 
+
+mongoose.connect('mongodb://localhost/my_database');
+
 app.listen(process.env.PORT, () =>{
     console.log('Escutando na porta: ', process.env.PORT);
 });
 
-//No Postman, realize o seguinte teste:
-    //Em Body selecione: x-www-form-urlencoded
-    //key:nome  value:Rodrigo
-    //key:idade  value:35
-    //Desflague a key nome para que não envie o nome
-    //POST: http://localhost:3000/usuario
-//Retorno:
-// {
-//     "ok": false,
-//     "mensagem": "O nome é necessário"
-// }
-//Status: 400 Bad Request
