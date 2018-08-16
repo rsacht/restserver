@@ -46,7 +46,13 @@ app.delete('/usuario', function (req, res) {
     res.json('delete Usuário funcionando');
 });
 
-mongoose.connect('mongodb://localhost/my_database');
+//Conectando Mongoose e Configuração de mensagem de erro
+mongoose.connect('mongodb://localhost:27017/cafe', (err,res) => {
+    if(err)throw err;
+    console.log('Base de dados ONLINE!');
+});
+//Verifique o funcionamento: nodemon server/server
+//Teste com uma porta inexistente, por exemplo: 27
 
 app.listen(process.env.PORT, () =>{
     console.log('Escutando na porta: ', process.env.PORT);
