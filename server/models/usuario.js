@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
 
+let rolesValidas ={
+    values: ['ADMIN_ROLE','USER_ROLE'],
+    message:'{VALUE} não é uma role válida '
+};
+
 let Schema = mongoose.Schema;
 
 let usuarioSchema = new Schema({
@@ -24,7 +29,8 @@ let usuarioSchema = new Schema({
     }, 
     role:{
         type:String,
-        default: 'USER_ROLE'
+        default: 'USER_ROLE',
+        enum: rolesValidas
     },
     estado:{
         type: Boolean,
@@ -38,5 +44,9 @@ let usuarioSchema = new Schema({
 
 usuarioSchema.plugin(uniqueValidator, {message:'{PATH} deve ser único'});
 //Teste no Postman: POST {{url}}/usuario
-//Verifique a mensagem de erro
+//Adicione uma role não listada, ex: role SUPER_ROLE
+//Verifique a mensagem de erro:
+//"message": "SUPER_ROLE não é uma role válida ",
+
+
 module.exports = mongoose.model('Usuario', usuarioSchema);
