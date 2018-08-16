@@ -56,7 +56,8 @@ app.put('/usuario/:id', function (req, res) {
     //Realiza a atualização das informações no banco de dados
     //Como queremos retornar o usuário atualizado com mongoose
     //De acordo com a documentação adicionamos {new:true} no terceiro parâmetro
-    Usuario.findByIdAndUpdate(id, body,{new:true}, (err, usuarioDB) =>{
+    //Para aplicar as validações de Roles vamos adicionar a propriedade runValidators:true
+    Usuario.findByIdAndUpdate(id, body,{new:true, runValidators:true}, (err, usuarioDB) =>{
         if(err){
             return res.status(400).json({
                 ok:false,
@@ -75,9 +76,10 @@ app.put('/usuario/:id', function (req, res) {
     //PUT {{url}}/usuario/cole_o_hash_do_id_aqui
     //Teremos status 200 porém ainda não realizamos nenhuma alteração
     //Em Body selecione x-www-form-urlencoded
-    //key: nome Value: Leandro
+    //key: role Value: dadada
     //Execute este PUT 
-    //Note no JSON que está retornando o usuário atualizado
+    //Note no JSON que agora retorna um erro de role não permitida
+    //Execute o PUT com uma das roles permitidas e note que passará normalmente
 
 });
 

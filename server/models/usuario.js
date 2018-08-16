@@ -5,6 +5,17 @@ let rolesValidas ={
     values: ['ADMIN_ROLE','USER_ROLE'],
     message:'{VALUE} não é uma role válida '
 };
+    //=========== TESTE =========== //
+    //Copie um id válido no Robo 3T
+    //No Postman cole o id da seguinte forma:
+    //PUT {{url}}/usuario/cole_o_hash_do_id_aqui
+    //Em Body selecione x-www-form-urlencoded
+    //key: role Value: dadada
+    //Execute este PUT 
+    //Note no JSON que está gravando no banco de dados uma role não permitida
+    //Note que também é possível atualizar manualmente para uma das duas roles válidas
+    //Precisamos efetuar uma validação com mongoose para evitar que o usuário
+    //altere manualmente as roles
 
 let Schema = mongoose.Schema;
 
