@@ -13,11 +13,11 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'dev';
 // ============================
 let urlDB;
 
-// if(process.env.NODE_ENV === 'dev'){
-//     urlDB = 'mongodb://localhost:27017/cafe';
-// }else{
+if(process.env.NODE_ENV === 'dev'){
+    urlDB = 'mongodb://localhost:27017/cafe';
+}else{
     urlDB = 'mongodb://cafe-user:cafe123@ds223812.mlab.com:23812/cafe';
-// }
+}
 //Configurando o banco de dados na nuvem
 //Acesse: https://mlab.com
 //Crie o banco de dados: cafe
