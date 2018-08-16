@@ -17,8 +17,8 @@ app.get('/usuario', function (req, res) {
     limite = Number(limite);
 
     //({})Para trazer todos os registros dessa coleção
-    //Retornando apenas registros com google:true
-    Usuario.find({google:true})
+    //Definindo os campos que queremos mostrar no retorno JSON
+    Usuario.find({}, 'nome email role estado google')
         .skip(desde)//Pula x registros
         .limit(limite)//Limita a quantidade de registros
         .exec((err, usuarios) =>{
@@ -28,7 +28,7 @@ app.get('/usuario', function (req, res) {
                     err
                 });
             }
-            Usuario.count({google:true}, (err, conteo)=>{
+            Usuario.count({}, (err, conteo)=>{
                 res.json({
                     ok: true,
                     usuarios,
