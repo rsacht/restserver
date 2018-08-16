@@ -54,7 +54,9 @@ app.put('/usuario/:id', function (req, res) {
     //Pega o corpo da requisição
     let body = req.body;
     //Realiza a atualização das informações no banco de dados
-    Usuario.findByIdAndUpdate(id, body, (err, usuarioDB) =>{
+    //Como queremos retornar o usuário atualizado com mongoose
+    //De acordo com a documentação adicionamos {new:true} no terceiro parâmetro
+    Usuario.findByIdAndUpdate(id, body,{new:true}, (err, usuarioDB) =>{
         if(err){
             return res.status(400).json({
                 ok:false,
@@ -75,8 +77,7 @@ app.put('/usuario/:id', function (req, res) {
     //Em Body selecione x-www-form-urlencoded
     //key: nome Value: Leandro
     //Execute este PUT 
-    //Note no JSON que não está retornando o usuário atualizado
-    //Verifique no Robo 3T que a alteração ocorreu
+    //Note no JSON que está retornando o usuário atualizado
 
 });
 
