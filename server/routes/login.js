@@ -1,5 +1,6 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const Usuario = require('../models/usuario');
 const app = express();
 
@@ -33,11 +34,15 @@ app.post('/login', (req, res)=>{
                 }
             });
         }
+        //Construção da assinatura com expiração em 30 dias
+        let token = jwt.sign({
+            usuario:usuarioDB
+        },'este-e-o-seed-de-desenvolvimento',{expiresIn: 60*60*24*30})
         //Se passar em todas as validações retorne isto:
         res.json({
             ok: true,
             usuario: usuarioDB,
-            token: '123'
+            token
         });
     });
 });
