@@ -6,7 +6,7 @@ let verificaToken = (req, res, next) =>{
     let token = req.get('token');//ou Authorization caso tenha sido configurado assim
  
     //Comprovando que o token é válido
-    jwt.verify(token, SEED, (err, decoded) =>{
+    jwt.verify(token, process.env.SEED, (err, decoded) =>{
         //Se não há erro a informação é correta 
         //e decoded vai conter a informação do usuário
         if(err){
@@ -21,7 +21,7 @@ let verificaToken = (req, res, next) =>{
         //Uma vez que conseguimos pegar o token agora aplicamos o next para
         //que o restante da lógica do usuário ocorra
         next();
-    })
+    });
 
 
 }
