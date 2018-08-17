@@ -37,7 +37,7 @@ app.post('/login', (req, res)=>{
         //Construção da assinatura com expiração em 30 dias
         let token = jwt.sign({
             usuario:usuarioDB
-        },'este-e-o-seed-de-desenvolvimento',{expiresIn: 60*60*24*30})
+        },'este-e-o-seed-de-desenvolvimento',{expiresIn: process.env.EXPIRA_TOKEN})
         //Se passar em todas as validações retorne isto:
         res.json({
             ok: true,
