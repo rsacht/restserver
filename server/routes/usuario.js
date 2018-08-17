@@ -4,10 +4,19 @@ const _ = require('underscore');
 
 //Objeto Usuário para trabalhar com os Schemas
 const Usuario = require('../models/usuario');
+
+//Importando a função que verifica o Token
+const {verificaToken} = require('../middlewares/auth');
+
 const app = express();
 
 //Consultar usuário
-app.get('/usuario', function (req, res) {
+//Adicionando um middleware de verificação do Token (segundo argumento)
+//O middleware verificaToken será disparado quando a rota for realizada
+//Teste no Postman: Copie um token de login de algum usuário
+//Faça uma requisição GET: em Headers Key: token Value: cole o Token
+//Retornará o token do Headers
+app.get('/usuario', verificaToken,(req, res) => {
     //Define a partir de qual registro deve ser efetuada a busca
     let desde = req.query.desde || 0;
     //Define a variável como numérica para ser utilizada no skip
