@@ -15,6 +15,10 @@ app.use(bodyParser.json())
 app.use(require('./routes/usuario'));
 //Efetue o teste no Postman GET: {{url}}/usuario
 
+//Rotas de Login
+app.use(require('./routes/login'));
+//Efetue o teste no Postman POST: {{url}}/login
+
 //Conectando Mongoose e Configuração de mensagem de erro
 mongoose.connect(process.env.URLDB, (err,res) => {
     if(err)throw err;
