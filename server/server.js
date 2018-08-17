@@ -11,13 +11,8 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
-//Rotas de Usuário
-app.use(require('./routes/usuario'));
-//Efetue o teste no Postman GET: {{url}}/usuario
-
-//Rotas de Login
-app.use(require('./routes/login'));
-//Efetue o teste no Postman POST: {{url}}/login
+//Configuração global de rotas
+app.use(require('./routes/index'));
 
 //Conectando Mongoose e Configuração de mensagem de erro
 mongoose.connect(process.env.URLDB, (err,res) => {
