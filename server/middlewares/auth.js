@@ -1,14 +1,29 @@
+const jwt = require('jsonwebtoken');
+
 //Verifica a authenticação do token
 let verificaToken = (req, res, next) =>{
 //Leitura do Header (Pegar o Token)
     let token = req.get('token');//ou Authorization caso tenha sido configurado assim
  
-    //Imprime o token no terminal
-    console.log(token);
+    //Comprovando que o token é válido
+    jwt.verify(token, SEED, (err, decoded) =>{
+        //Se não há erro a informação é correta 
+        //e decoded vai conter a informação do usuário
+        if(err){
+            return res.status(401).json({
+                ok:false,
+                err
+            });
+        }
+        //Qualquer requisição poderá ter acesso às informações do usuário
+        //Somente após passar pelo verificaToken
+        req.usuario = decoded.usuario;    
+        //Uma vez que conseguimos pegar o token agora aplicamos o next para
+        //que o restante da lógica do usuário ocorra
+        next();
+    })
 
-    //Uma vez que conseguimos pegar o token agora aplicamos o next para
-    //que o restante da lógica do usuário ocorra
-    next();
+
 }
 
 module.exports ={
