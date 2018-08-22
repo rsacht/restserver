@@ -19,7 +19,7 @@ const app = express();
 app.get('/usuario', verificaToken,(req, res) => {
     //Retorna um json com todas as propriedades do usuário
     return res.json({
-        usuario:req.usuario
+        nome:req.usuario.nome
     })
     //Define a partir de qual registro deve ser efetuada a busca
     let desde = req.query.desde || 0;
