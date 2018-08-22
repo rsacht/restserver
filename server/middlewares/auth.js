@@ -45,8 +45,17 @@ let verificaAdminRole = (req, res, next) =>{
             }
         });
     }
-
 }
+// TESTE no POSTMAN
+// Renove o token do usuário efetuando novo login
+// Grave o novo token na variável de ambiente de desenvolvimento: Engrenagem
+// Utilize o novo token em Headers: token {{token}}
+// Efetue o cadastro de um novo usuário POST Criar Usuário
+// Para testar a atualização faça um GET usuario para obter a lista dos usuários
+// Copie um id de usuário qualquer
+// Faça a atualização: PUT {{url}}/usuario/cole_o_id_aqui
+// Em Body faça a alteração dos dados e execute o PUT
+// Para efetuar o DELETE, cole o id do usuário e execute
 
 module.exports ={
     verificaToken,

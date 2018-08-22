@@ -17,12 +17,12 @@ const app = express();
 //Faça uma requisição GET: em Headers Key: token Value: cole o Token
 //Retornará o token do Headers
 app.get('/usuario', verificaToken,(req, res) => {
-    //Retorna um json com todas as propriedades do usuário
-    return res.json({
-        usuario:req.usuario,
-        nome:req.usuario.nome,
-        email:req.usuario.email
-    })
+    // //Retorna um json com todas as propriedades do usuário
+    // return res.json({
+    //     usuario:req.usuario,
+    //     nome:req.usuario.nome,
+    //     email:req.usuario.email
+    // })
     //Define a partir de qual registro deve ser efetuada a busca
     let desde = req.query.desde || 0;
     //Define a variável como numérica para ser utilizada no skip
