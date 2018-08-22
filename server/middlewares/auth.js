@@ -12,7 +12,9 @@ let verificaToken = (req, res, next) =>{
         if(err){
             return res.status(401).json({
                 ok:false,
-                err
+                err: {
+                    message: 'Token Inválido!'
+                }
             });
         }
         //Qualquer requisição poderá ter acesso às informações do usuário
