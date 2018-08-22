@@ -6,7 +6,7 @@ const _ = require('underscore');
 const Usuario = require('../models/usuario');
 
 //Importando a função que verifica o Token
-const {verificaToken} = require('../middlewares/auth');
+const {verificaToken, verificaAdminRole} = require('../middlewares/auth');
 
 const app = express();
 
@@ -64,7 +64,7 @@ app.get('/usuario', verificaToken,(req, res) => {
 
 
 //Criar usuário
-app.post('/usuario', verificaToken, function (req, res) {
+app.post('/usuario', [verificaToken, verificaAdminRole], function (req, res) {
     //"body" será processado sempre que o body-parser processe 
     //um payload que receba as petições
     let body = req.body;
@@ -102,7 +102,7 @@ app.post('/usuario', verificaToken, function (req, res) {
 });
 
 //Atualizar usuário
-app.put('/usuario/:id', verificaToken, function (req, res) {
+app.put('/usuario/:id', [verificaToken, verificaAdminRole], function (req, res) {
     //Pega o parâmetro id
     let id = req.params.id;
     //Pega o corpo da requisição
@@ -148,7 +148,7 @@ app.put('/usuario/:id', verificaToken, function (req, res) {
 });
 
 //Excluir usuário
-app.delete('/usuario/:id', verificaToken, function (req, res) {
+app.delete('/usuario/:id', [verificaToken, verificaAdminRole], function (req, res) {
     let id = req.params.id;
     //Deletando usuário mudando o campo estado para false
     //Usuario.findByIdAndRemove(id, (err, usuarioExcluido) =>{
