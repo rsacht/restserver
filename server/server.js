@@ -13,10 +13,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
 
 // Habilitar a pasta public
-app.use(express.static(__dirname + '../public'));
-
-//Testando
-console.log(path.resolve(__dirname, '../public'));
+app.use(express.static(path.resolve(__dirname, '../public' )));
 
 //Configuração global de rotas
 app.use(require('./routes/index'));
