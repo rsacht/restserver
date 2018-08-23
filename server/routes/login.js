@@ -94,6 +94,15 @@ app.post('/google', async (req, res)=>{
                     ok:false,
                     err
                 });
+            };
+            //Se o usuário existe e se é autenticado de forma normal
+            if(usuarioDB.google === false){
+                return res.status(400).json({
+                    ok:false,
+                    err:{
+                        message: 'Use a sua autenticação normal'
+                    }
+                });                
             }
         });
 
