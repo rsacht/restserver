@@ -56,22 +56,27 @@ app.post('/login', (req, res)=>{
 //Teste com erro no email e depois erre o password
 
 //Configurações do Google
-async function verify() {
+//Envia o token por parametro
+async function verify(token) {
     const ticket = await client.verifyIdToken({
         idToken: token,
-        audience: CLIENT_ID,  // Specify the CLIENT_ID of the app that accesses the backend
+        audience: process.env.CLIENT_ID,  // Specify the CLIENT_ID of the app that accesses the backend
         // Or, if multiple clients access the backend:
         //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
     });
+    //No payload estão todas as informações do usuário
     const payload = ticket.getPayload();
-    const userid = payload['sub'];
-    // If request specified a G Suite domain:
-    //const domain = payload['hd'];
+
+    console.log(payload.name);
+    console.log(payload.email);
+    console.log(payload.picture);
   }
-  verify().catch(console.error);
+
+
 app.post('/google', (req, res)=>{
     //Pega o token do Google e manda para o lado do servidor
     let token = req.body.idtoken;
+    verify(token)
     res.json({
         token
     });
