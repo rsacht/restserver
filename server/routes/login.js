@@ -52,11 +52,11 @@ app.post('/login', (req, res)=>{
 //Teste com erro no email e depois erre o password
 
 app.post('/google', (req, res)=>{
-    
+    //Pega o token do Google e manda para o lado do servidor
+    let token = req.body.idtoken;
     res.json({
-        body: req.body
+        token
     });
-
 });
 
 module.exports = app;
