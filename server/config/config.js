@@ -38,3 +38,8 @@ process.env.URLDB = urlDB;
 //Cadastre um novo usuário no banco remoto com POST
 //Verifique em MLab que agora temos um registro em Collections
 //Faça um refresh em Collections caso não esteja vendo o registro
+
+// ============================
+// Google Client Id
+// ============================
+process.env.CLIENT_ID = process.env.CLIENT_ID || '490468408570-397mtp64spuv20ojbf4fpdt48gvqhdp4.apps.googleusercontent.com';
