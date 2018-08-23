@@ -86,10 +86,17 @@ app.post('/google', async (req, res)=>{
                 err: e
             });
         });
-    //Imprimindo diretamente os dados (Veja no console)
-    res.json({
-        usuario: googleUser
-    });
+    // =========== VALIDAÇÔES ============ //
+    // Verificar se o e-mail pertence a um usuário cadastrado
+        Usuario.findOne({email:googleUser.email}, (err, usuarioDB)=>{
+            
+        });
+
+
+    // //Imprimindo diretamente os dados (Veja no console)
+    // res.json({
+    //     usuario: googleUser
+    // });
 });
 
 module.exports = app;
