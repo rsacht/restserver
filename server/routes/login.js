@@ -86,7 +86,7 @@ app.post('/google', async (req, res)=>{
                 err: e
             });
         });
-        
+    //Imprimindo diretamente os dados (Veja no console)
     res.json({
         usuario: googleUser
     });
