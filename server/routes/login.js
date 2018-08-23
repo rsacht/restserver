@@ -41,7 +41,7 @@ app.post('/login', (req, res)=>{
         //Construção da assinatura com expiração em 30 dias
         let token = jwt.sign({
             usuario:usuarioDB
-        },process.env.SEED,{expiresIn: process.env.EXPIRA_TOKEN})
+        },process.env.SEED,{expiresIn: process.env.EXPIRA_TOKEN});
         //Se passar em todas as validações retorne isto:
         res.json({
             ok: true,
@@ -103,6 +103,16 @@ app.post('/google', async (req, res)=>{
                         message: 'Use a sua autenticação normal'
                     }
                 });                
+            }else{
+                let token = jwt.sign({
+                    usuario:usuarioDB
+                },process.env.SEED,{expiresIn: process.env.EXPIRA_TOKEN});
+
+                return res.json({
+                    ok: true,
+                    usuario: usuarioDB,
+                    token
+                })
             }
         });
 
