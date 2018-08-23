@@ -51,4 +51,12 @@ app.post('/login', (req, res)=>{
 //No Postman faça um POST Keys: email e password
 //Teste com erro no email e depois erre o password
 
+app.post('/google', (req, res)=>{
+    
+    res.json({
+        body: req.body
+    });
+
+});
+
 module.exports = app;
