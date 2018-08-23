@@ -89,7 +89,12 @@ app.post('/google', async (req, res)=>{
     // =========== VALIDAÇÔES ============ //
     // Verificar se o e-mail pertence a um usuário cadastrado
         Usuario.findOne({email:googleUser.email}, (err, usuarioDB)=>{
-            
+            if(err){
+                return res.status(500).json({
+                    ok:false,
+                    err
+                });
+            }
         });
 
 
