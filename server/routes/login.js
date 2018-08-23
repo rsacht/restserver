@@ -55,6 +55,20 @@ app.post('/login', (req, res)=>{
 //No Postman faça um POST Keys: email e password
 //Teste com erro no email e depois erre o password
 
+//Configurações do Google
+async function verify() {
+    const ticket = await client.verifyIdToken({
+        idToken: token,
+        audience: CLIENT_ID,  // Specify the CLIENT_ID of the app that accesses the backend
+        // Or, if multiple clients access the backend:
+        //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
+    });
+    const payload = ticket.getPayload();
+    const userid = payload['sub'];
+    // If request specified a G Suite domain:
+    //const domain = payload['hd'];
+  }
+  verify().catch(console.error);
 app.post('/google', (req, res)=>{
     //Pega o token do Google e manda para o lado do servidor
     let token = req.body.idtoken;
