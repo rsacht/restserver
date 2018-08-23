@@ -67,9 +67,12 @@ async function verify(token) {
     //No payload estão todas as informações do usuário
     const payload = ticket.getPayload();
 
-    console.log(payload.name);
-    console.log(payload.email);
-    console.log(payload.picture);
+    return{
+        nome: payload.name,
+        email: payload.email,
+        img: payload.picture,
+        google: true
+    }
   }
 
 
