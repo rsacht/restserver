@@ -1,5 +1,5 @@
 const express = require('express');
-let{verificaToken} = require('../middlewares/auth');
+let{verificaToken, verificaAdminRole} = require('../middlewares/auth');
 let app = express();
 let Categoria = require('../models/categoria');
 
@@ -67,7 +67,7 @@ app.put('/categorias/:id',verificaToken, (req, res)=>{
 // ===========================
 // Exclui uma categoria por ID
 // ===========================
-app.delete('/categorias/:id', (req, res)=>{
+app.delete('/categorias/:id', [verificaToken, verificaAdminRole], (req, res)=>{
     let id = req.params.id;
 
     Categoria.findByIdAndRemove(id, (err, categoriaDB) => {
