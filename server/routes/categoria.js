@@ -12,9 +12,11 @@ app.post('/categorias', verificaToken, (req, res)=>{
     let categoria = new Categoria({
         descricao: body.descricao,
         usuario: req.usuario._id
-
     });
 
+    categoria.save((err, categoriaDB)=>{
+        
+    });
  });
  
 
