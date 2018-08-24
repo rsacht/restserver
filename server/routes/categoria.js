@@ -8,6 +8,10 @@ let Categoria = require('../models/categoria');
 // ===========================
 app.post('/categorias', verificaToken, (req, res)=>{
     let body = req.body;
+
+    let categoria = new Categoria({
+
+    });
     //Retorna a nova categoria
     // Através da função verificaToken teremos acesso
     // ao ID da pessoa que criou a categoria
