@@ -27,6 +27,10 @@ app.post('/categorias', verificaToken, (req, res)=>{
                 err
             });
         }
+        res.json({
+            ok:true,
+            categoria: categoriaDB
+        });
     });
  });
  
