@@ -41,7 +41,7 @@ app.put('/categorias/:id', (req, res)=>{
     let id = req.params.id;
     let body = req.body;
     let descCategoria = {
-        descricao: body.decricao
+        descricao: body.descricao
     };
 
     Categoria.findByIdAndUpdate(id, descCategoria, {new:true, runValidators:true}, (err, categoriaDB)=> {
