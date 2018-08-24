@@ -95,25 +95,59 @@ app.post('/google', async (req, res)=>{
                     err
                 });
             };
-            //Se o usuário existe e se é autenticado de forma normal
-            if(usuarioDB.google === false){
-                return res.status(400).json({
-                    ok:false,
-                    err:{
-                        message: 'Use a sua autenticação normal'
-                    }
-                });                
+            
+            if(usuarioDB){
+                //Se o usuário existe e não é autenticado pelo Google
+                if(usuarioDB.google === false){
+                    return res.status(400).json({
+                        ok:false,
+                        err:{
+                            message: 'Use a sua autenticação normal'
+                        }
+                    }); 
+                //Se o usuário foi autenticado pelo Google renova com um Token personalizado      
+                }else{
+                    let token = jwt.sign({
+                        usuario:usuarioDB
+                    },process.env.SEED,{expiresIn: process.env.EXPIRA_TOKEN});
+                    //Retorna a requisição ok, usuário e token renovado
+                    return res.json({
+                        ok: true,
+                        usuario: usuarioDB,
+                        token
+                    });
+                }
+            //Se é a primeira vez que o usuário está se autenticando
             }else{
-                let token = jwt.sign({
-                    usuario:usuarioDB
-                },process.env.SEED,{expiresIn: process.env.EXPIRA_TOKEN});
-
-                return res.json({
-                    ok: true,
-                    usuario: usuarioDB,
-                    token
-                })
-            }
+                //Se o usuário não existe na base de dados cria um objeto Usuário
+                let usuario = new Usuario();
+                //Propriedades do usuário
+                usuario.nome = googleUser.nome;
+                usuario.email = googleUser.email;
+                usuario.img = googleUser.img;
+                usuario.google = true;
+                usuario.password = ':)';
+                //Salva as informações do usuário no banco de dados
+                usuario.save((err, usuarioDB) =>{
+                    //Mensagem de erro caso ocorra algum erro
+                    if(err){
+                        return res.status(500).json({
+                            ok: false,
+                            err
+                        });
+                    };
+                    //Se não há erros gera um novo token
+                    let token = jwt.sign({
+                        usuario:usuarioDB
+                    },process.env.SEED,{expiresIn: process.env.EXPIRA_TOKEN});
+                    //Imprime como uma resposta JSON
+                    return res.json({
+                        ok: true,
+                        usuario: usuarioDB,
+                        token
+                    });
+                });
+            }      
         });
 
 
