@@ -40,6 +40,9 @@ app.post('/categorias', verificaToken, (req, res)=>{
 app.put('/categorias/:id', (req, res)=>{
     let id = req.params.id;
     let body = req.body;
+    let descCategoria = {
+        descricao: body.decricao
+    };
 });
 
 
