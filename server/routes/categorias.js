@@ -34,5 +34,13 @@ app.post('/categorias', verificaToken, (req, res)=>{
     });
  });
  
+// ===========================
+// Atualiza uma categoria por ID
+// ===========================
+app.put('/categorias/:id', (req, res)=>{
+
+  
+});
+
 
 module.exports = app;
