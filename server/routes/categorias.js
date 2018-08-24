@@ -68,10 +68,8 @@ app.put('/categorias/:id', (req, res)=>{
 // Exclui uma categoria por ID
 // ===========================
 app.delete('/categorias/:id', (req, res)=>{
+    let id = req.params.id;
 
-    //Só o administrador pode excluir categorias
-    //Tem que pedir o token
-    // Categoria.findByIdAndRemove
  });
  
 
