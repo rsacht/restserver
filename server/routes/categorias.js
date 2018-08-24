@@ -81,10 +81,14 @@ app.delete('/categorias/:id', (req, res)=>{
             return res.status(400).json({
                 ok:false,
                 err:{
-                    message: 'O id não existe!'
+                    message: 'O id não existe'
                 }
             });
         }
+        res.json({
+            ok:true,
+            message: 'Categoria Excluída com Sucesso!'
+        });
     });
  });
  
