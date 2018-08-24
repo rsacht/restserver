@@ -43,6 +43,14 @@ app.put('/categorias/:id', (req, res)=>{
     let descCategoria = {
         descricao: body.decricao
     };
+    // ======== Atualizando a Categoria ======== //
+    //Primeiro parâmetro é o id da categoria
+    //Segundo parâmetro é a informação a ser atualizada
+    //Terceiro parâmetro o new:true serve para não chocar com as validações
+    Categoria.findByIdAndUpdate(id, descCategoria, {new:true, runValidators:true, context: 'query'}, (err, categoriaDB)=>{
+
+    });
+
 });
 
 
