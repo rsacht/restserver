@@ -70,6 +70,9 @@ app.put('/categorias/:id', (req, res)=>{
 app.delete('/categorias/:id', (req, res)=>{
     let id = req.params.id;
 
+    Categoria.findByIdAndRemove(id, (err, categoriaDB) => {
+        
+    });
  });
  
 
