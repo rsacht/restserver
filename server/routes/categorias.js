@@ -37,7 +37,7 @@ app.post('/categorias', verificaToken, (req, res)=>{
 // ===========================
 // Atualiza uma categoria por ID
 // ===========================
-app.put('/categorias/:id', (req, res)=>{
+app.put('/categorias/:id',verificaToken, (req, res)=>{
     let id = req.params.id;
     let body = req.body;
     let descCategoria = {
