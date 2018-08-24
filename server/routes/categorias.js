@@ -44,7 +44,7 @@ app.put('/categorias/:id', (req, res)=>{
         descricao: body.decricao
     };
 
-    Categoria.findByIdAndUpdate(id, descCategoria, {new:true, runValidators:true, context: 'query'}, (err, categoriaDB)=>{
+    Categoria.findByIdAndUpdate(id, descCategoria, {new:true, runValidators:true}, (err, categoriaDB)=> {
         if(err){
             return res.status(500).json({
                 ok:false,
@@ -57,6 +57,10 @@ app.put('/categorias/:id', (req, res)=>{
                 err
             });
         }
+        res.json({
+            ok:true,
+            categoria: categoriaDB
+        });
     });
 });
 
