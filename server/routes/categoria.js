@@ -21,6 +21,12 @@ app.post('/categorias', verificaToken, (req, res)=>{
                 err
             });
         }
+        if(!categoriaDB){
+            return res.status(400).json({
+                ok:false,
+                err
+            });
+        }
     });
  });
  
