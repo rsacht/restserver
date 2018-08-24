@@ -15,7 +15,12 @@ app.post('/categorias', verificaToken, (req, res)=>{
     });
 
     categoria.save((err, categoriaDB)=>{
-        
+        if(err){
+            return res.status(500).json({
+                ok:false,
+                err
+            });
+        }
     });
  });
  
