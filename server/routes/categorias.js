@@ -51,8 +51,13 @@ app.put('/categorias/:id', (req, res)=>{
                 err
             });
         }
+        if(!categoriaDB){
+            return res.status(400).json({
+                ok:false,
+                err
+            });
+        }
     });
-
 });
 
 
