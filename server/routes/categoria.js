@@ -6,16 +6,15 @@ let Categoria = require('../models/categoria');
 // ===========================
 // Cria nova categoria
 // ===========================
-app.post('/categorias', (req, res)=>{
+app.post('/categorias', verificaToken, (req, res)=>{
     let body = req.body;
 
     let categoria = new Categoria({
         descricao: body.descricao,
+        usuario: req.usuario._id
 
     });
-    //Retorna a nova categoria
-    // Através da função verificaToken teremos acesso
-    // ao ID da pessoa que criou a categoria
+
  });
  
 
