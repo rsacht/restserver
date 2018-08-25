@@ -68,6 +68,7 @@ app.get('/categorias/:id', verificaToken, (req, res)=>{
 app.get('/categorias', verificaToken, (req, res)=>{
 
     Categoria.find({})
+        .sort('descricao')
         .populate('usuario', 'nome email')
         .exec((err, categorias) =>{
             if(err){
