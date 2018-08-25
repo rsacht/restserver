@@ -61,7 +61,12 @@ app.put('/produtos/:id', (req, res) =>{
         produtoDB.categoria = body.categoria;
 
         produtoDB.save((err, produtoSalvo)=>{
-            
+            if(err){
+                return res.status(500).json({
+                    ok: false,
+                    err
+                });
+            }
         });
     });
 });
