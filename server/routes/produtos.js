@@ -16,6 +16,15 @@ app.post('/produtos', verificaToken, (req, res) =>{
         disponivel: body.disponivel,
         categoria: body.categoria
     });
+
+    produto.save((err, produtoDB)=>{
+        if(err){
+            return res.status(500).json({
+                ok: false,
+                err
+            });
+        }
+    });
 });
 
 module.exports = app;
