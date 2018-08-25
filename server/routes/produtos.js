@@ -31,4 +31,11 @@ app.post('/produtos', verificaToken, (req, res) =>{
     });
 });
 
+// ===========================
+// Atualiza um produto
+// ===========================
+app.put('/produtos/:id', (req, res) =>{
+
+});
+
 module.exports = app;
