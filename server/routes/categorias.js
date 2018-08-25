@@ -67,6 +67,7 @@ app.get('/categorias/:id', verificaToken, (req, res)=>{
 // ===========================
 app.get('/categorias', verificaToken, (req, res)=>{
 
+    Categoria.find({})
     
  });
  
