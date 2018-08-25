@@ -69,7 +69,12 @@ app.get('/categorias', verificaToken, (req, res)=>{
 
     Categoria.find({})
         .exec((err, categorias) =>{
-
+            if(err){
+                return res.status(500).json({
+                    ok:false,
+                    err
+                });
+            }
         });   
  });
  
