@@ -53,6 +53,12 @@ app.put('/produtos/:id', (req, res) =>{
                 }
             });
         }
+
+        produtoDB.nome = body.nome;
+        produtoDB.precoUni = body.precoUni;
+        produtoDB.descricao = body.descricao;
+        produtoDB.disponivel = body.disponivel;
+        produtoDB.categoria = body.categoria;
     });
 });
 
