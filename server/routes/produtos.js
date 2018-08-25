@@ -24,6 +24,10 @@ app.post('/produtos', verificaToken, (req, res) =>{
                 err
             });
         }
+        res.status(201).json({
+            ok:true,
+            produto: produtoDB
+        });
     });
 });
 
