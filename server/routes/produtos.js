@@ -6,7 +6,7 @@ let Produto = require('../models/produto');
 // ===========================
 // Cria um novo produto
 // ===========================
-app.post('/produtos', (req, res) =>{
+app.post('/produtos', verificaToken, (req, res) =>{
     let body = req.body;
 });
 
