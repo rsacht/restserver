@@ -62,6 +62,14 @@ app.get('/categorias/:id', verificaToken, (req, res)=>{
     });
  });
 
+ // ===========================
+// Lista todas as categorias
+// ===========================
+app.get('/categorias', (req, res)=>{
+
+    
+ });
+ 
  
 // ===========================
 // Atualiza uma categoria por ID
