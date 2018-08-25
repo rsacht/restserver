@@ -38,7 +38,7 @@ app.post('/categorias', verificaToken, (req, res)=>{
 // Mostra uma categoria por ID
 // ===========================
 app.get('/categorias/:id', verificaToken, (req, res)=>{
-
+    let id = req.params.id;
     
  });
 
