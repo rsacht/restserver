@@ -45,6 +45,14 @@ app.put('/produtos/:id', (req, res) =>{
                 err
             });
         }
+        if(!produtoDB){
+            return res.status(400).json({
+                ok: false,
+                err:{
+                    message:'O Produto Solicitado não Existe'
+                }
+            });
+        }
     });
 });
 
