@@ -67,6 +67,10 @@ app.put('/produtos/:id', (req, res) =>{
                     err
                 });
             }
+            res.json({
+                ok:true,
+                produto: produtoSalvo
+            });
         });
     });
 });
