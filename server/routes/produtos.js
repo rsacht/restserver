@@ -10,7 +10,11 @@ app.post('/produtos', verificaToken, (req, res) =>{
     let body = req.body;
     let produto = new Produto({
         usuario: req.usuario._id,
-
+        nome: body.nome,
+        precoUni: body.precoUni,
+        descricao: body.descricao,
+        disponivel: body.disponivel,
+        categoria: body.categoria
     });
 });
 
