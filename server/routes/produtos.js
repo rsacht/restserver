@@ -7,7 +7,7 @@ let Produto = require('../models/produto');
 // Cria um novo produto
 // ===========================
 app.post('/produtos', (req, res) =>{
-
+    let body = req.body;
 });
 
 module.exports = app;
