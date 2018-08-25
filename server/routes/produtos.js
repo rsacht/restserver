@@ -9,6 +9,7 @@ let Produto = require('../models/produto');
 app.post('/produtos', verificaToken, (req, res) =>{
     let body = req.body;
     let produto = new Produto({
+        usuario: req.usuario._id,
 
     });
 });
