@@ -75,6 +75,10 @@ app.get('/categorias', verificaToken, (req, res)=>{
                     err
                 });
             }
+            res.json({
+                ok:true,
+                categorias
+            });
         });   
  });
  
