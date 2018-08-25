@@ -41,7 +41,12 @@ app.get('/categorias/:id', verificaToken, (req, res)=>{
     let id = req.params.id;
     
     Categoria.findById(id, (err, categoriaDB) =>{
-        
+        if(err){
+            return res.status(500).json({
+                ok:false,
+                err
+            });
+        }
     });
  });
 
