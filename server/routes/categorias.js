@@ -65,7 +65,7 @@ app.get('/categorias/:id', verificaToken, (req, res)=>{
  // ===========================
 // Lista todas as categorias
 // ===========================
-app.get('/categorias', (req, res)=>{
+app.get('/categorias', verificaToken, (req, res)=>{
 
     
  });
