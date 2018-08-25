@@ -40,6 +40,9 @@ app.post('/categorias', verificaToken, (req, res)=>{
 app.get('/categorias/:id', verificaToken, (req, res)=>{
     let id = req.params.id;
     
+    Categoria.findById(id, (err, categoriaDB) =>{
+        
+    });
  });
 
  
