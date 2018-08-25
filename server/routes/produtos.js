@@ -59,6 +59,10 @@ app.put('/produtos/:id', (req, res) =>{
         produtoDB.descricao = body.descricao;
         produtoDB.disponivel = body.disponivel;
         produtoDB.categoria = body.categoria;
+
+        produtoDB.save((err, produtoSalvo)=>{
+            
+        });
     });
 });
 
