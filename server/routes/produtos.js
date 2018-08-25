@@ -37,6 +37,10 @@ app.post('/produtos', verificaToken, (req, res) =>{
 app.put('/produtos/:id', (req, res) =>{
     let id = req.params.id;
     let body = req.body;
+
+    Produto.findById(id, (err, produtoDB) =>{
+
+    });
 });
 
 module.exports = app;
