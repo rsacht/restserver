@@ -39,7 +39,12 @@ app.put('/produtos/:id', (req, res) =>{
     let body = req.body;
 
     Produto.findById(id, (err, produtoDB) =>{
-
+        if(err){
+            return res.status(500).json({
+                ok: false,
+                err
+            });
+        }
     });
 });
 
