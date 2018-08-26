@@ -17,7 +17,7 @@ app.put('/upload', function(req, res) {
     }
     let arquivo = req.files.arquivo;
 
-    arquivo.mv('/uploads/filename.jpg', (err) => {
+    arquivo.mv('filename.jpg', (err) => {
         if (err){
             return res.status(500).json({
                 ok: false,
