@@ -26,7 +26,8 @@ app.put('/uploads', function(req, res) {
         return res.status(400).json({
             ok: false,
             err:{
-                message: 'As extensões permitidas são: ' + extensoesValidas.join(', ')
+                message: 'As extensões permitidas são: ' + extensoesValidas.join(', '),
+                ext: extensao
             }
         });
     }
