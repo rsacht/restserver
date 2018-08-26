@@ -156,6 +156,16 @@ app.delete('/produtos/:id', verificaToken, (req, res) =>{
             });
         }
         produtoDB.disponible = false;
+
+        produtoDB.save((err, produtoIndisponivel) =>{
+            if(err){
+                return res.status(500).json({
+                    ok: false,
+                    err
+                });
+            }
+        });
+
     });
 });
 
