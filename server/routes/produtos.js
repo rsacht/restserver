@@ -34,7 +34,7 @@ app.post('/produtos', verificaToken, (req, res) =>{
 // ===========================
 // Atualiza um produto
 // ===========================
-app.put('/produtos/:id', (req, res) =>{
+app.put('/produtos/:id', verificaToken, (req, res) =>{
     let id = req.params.id;
     let body = req.body;
 
@@ -79,7 +79,7 @@ app.put('/produtos/:id', (req, res) =>{
 // ===========================
 // Lista Produtos
 // ===========================
-app.put('/produtos/:id', (req, res) =>{
+app.get('/produtos', verificaToken, (req, res) =>{
     let desde = req.query.desde || 0;
     desde = Number(desde);
 
