@@ -18,14 +18,17 @@ app.put('/upload', function(req, res) {
     let arquivo = req.files.arquivo;
 
     arquivo.mv('/uploads/filename.jpg', (err) => {
-        if (err)
-          return res.status(500).json({
-              ok: false,
-              err
-          });    
-        res.json({
-            ok:true,
-            message:'Upload de arquivo realizado com sucesso!'
-        });
-      });
+        if (err){
+            return res.status(500).json({
+                ok: false,
+                err
+            });    
+            res.json({
+                ok:true,
+                message:'Upload de arquivo realizado com sucesso!'
+            });
+        }
+    });
 });
+
+module.exports = app;
