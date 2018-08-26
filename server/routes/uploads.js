@@ -19,9 +19,7 @@ app.put('/uploads', function(req, res) {
     let nomeCortado = arquivo.name.split('.');
     let extensao = nomeCortado[nomeCortado.length -1];
 
-    console.log(nomeArquivo);
-
-    return;
+    console.log(extensao);
 
     //Extensões de arquivos permitidas
     let extensoesValidas = ['png','jpg','jpeg','gif'];
