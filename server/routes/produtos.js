@@ -138,7 +138,8 @@ app.get('/produtos/:id', verificaToken, (req, res) =>{
 // Busca de Produtos
 // ===========================
 app.get('/produtos/busca/:termo', verificaToken, (req, res) =>{
-    
+    Produto.find({})
+        .populate('categoria', 'descricao')
 });
 
 // ===========================
