@@ -142,7 +142,7 @@ app.get('/produtos/busca/:termo', verificaToken, (req, res) =>{
 
     let regex = new RegExp(termo, 'i');
 
-    Produto.find({nome: regex})
+    Produto.find({nome: regex, disponivel: true})
         .populate('categoria', 'descricao')
         .exec((err, produtos)=>{
             if(err){
