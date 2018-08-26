@@ -140,6 +140,9 @@ app.get('/produtos/:id', verificaToken, (req, res) =>{
 app.get('/produtos/busca/:termo', verificaToken, (req, res) =>{
     Produto.find({})
         .populate('categoria', 'descricao')
+        .exec((err, produtos)=>{
+            
+        });
 });
 
 // ===========================
