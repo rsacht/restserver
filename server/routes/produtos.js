@@ -126,6 +126,10 @@ app.get('/produtos/:id', verificaToken, (req, res) =>{
                     }
                 });
             }
+            res.json({
+                ok:true,
+                produto:produtoDB
+            });
         });
 
 });
