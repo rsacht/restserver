@@ -138,7 +138,9 @@ app.get('/produtos/:id', verificaToken, (req, res) =>{
 // Busca de Produtos
 // ===========================
 app.get('/produtos/busca/:termo', verificaToken, (req, res) =>{
-    Produto.find({})
+    let termo = req.params.termo;
+
+    Produto.find({nome: termo})
         .populate('categoria', 'descricao')
         .exec((err, produtos)=>{
             if(err){
