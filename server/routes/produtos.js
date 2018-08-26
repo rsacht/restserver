@@ -106,6 +106,6 @@ app.get('/produtos', verificaToken, (req, res) =>{
 // Mostra um Produto
 // ===========================
 app.get('/produtos/:id', verificaToken, (req, res) =>{
-    
+    let id = re.params.id;
 });
 module.exports = app;
