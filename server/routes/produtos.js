@@ -141,7 +141,12 @@ app.get('/produtos/busca/:termo', verificaToken, (req, res) =>{
     Produto.find({})
         .populate('categoria', 'descricao')
         .exec((err, produtos)=>{
-            
+            if(err){
+                return res.status(500).json({
+                    ok: false,
+                    err
+                });
+            }           
         });
 });
 
