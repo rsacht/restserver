@@ -147,6 +147,14 @@ app.delete('/produtos/:id', verificaToken, (req, res) =>{
                 err
             });
         }
+        if(!produtoDB){
+            return res.status(400).json({
+                ok: false,
+                err:{
+                    message: 'O Produto não existe!'
+                }
+            });
+        }
     });
 });
 
