@@ -17,6 +17,9 @@ app.put('/uploads', function(req, res) {
     }
     let arquivo = req.files.arquivo;
 
+    //Extensões de arquivos permitidas
+    let extensoesValidas = ['png','jpg','jpeg','gif'];
+
     arquivo.mv('uploads/filename.jpg', (err) => {
         if (err)
             return res.status(500).json({
