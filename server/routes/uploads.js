@@ -5,7 +5,7 @@ const app = express();
 // default options
 app.use(fileUpload());
 
-app.put('/upload', function(req, res) {
+app.put('/uploads', function(req, res) {
     if (!req.files){
         return res.status(400)
             .json({
@@ -17,17 +17,16 @@ app.put('/upload', function(req, res) {
     }
     let arquivo = req.files.arquivo;
 
-    arquivo.mv('filename.jpg', (err) => {
-        if (err){
+    arquivo.mv('uploads/filename.jpg', (err) => {
+        if (err)
             return res.status(500).json({
                 ok: false,
                 err
             });    
-            res.json({
-                ok:true,
-                message:'Upload de arquivo realizado com sucesso!'
-            });
-        }
+        res.json({
+            ok:true,
+            message:'Upload de arquivo realizado com sucesso!'
+        });
     });
 });
 
