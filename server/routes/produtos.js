@@ -88,5 +88,17 @@ app.put('/produtos/:id', (req, res) =>{
         .limit(5)
         .populate('usuario', 'nome email')
         .populate('categoria', 'descricao')
+        .exec((err, produtos)=>{
+            if(err){
+                return res.status(500).json({
+                    ok: false,
+                    err
+                });
+            }
+            res.json({
+                ok:true,
+                produtos
+            });
+        });
 });
 module.exports = app;
