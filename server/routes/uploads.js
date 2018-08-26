@@ -16,6 +16,11 @@ app.put('/uploads', function(req, res) {
         });
     }
     let arquivo = req.files.arquivo;
+    let nomeArquivo = arquivo.name.split('.');
+
+    console.log(nomeArquivo);
+
+    return;
 
     //Extensões de arquivos permitidas
     let extensoesValidas = ['png','jpg','jpeg','gif'];
