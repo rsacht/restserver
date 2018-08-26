@@ -135,6 +135,13 @@ app.get('/produtos/:id', verificaToken, (req, res) =>{
 });
 
 // ===========================
+// Busca de Produtos
+// ===========================
+app.get('/produtos/busca/:termo', verificaToken, (req, res) =>{
+    
+});
+
+// ===========================
 // Excluir um Produto (Torna Indisponível)
 // ===========================
 app.delete('/produtos/:id', verificaToken, (req, res) =>{
