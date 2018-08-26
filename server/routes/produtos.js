@@ -133,4 +133,12 @@ app.get('/produtos/:id', verificaToken, (req, res) =>{
         });
 
 });
+
+// ===========================
+// Excluir um Produto (Torna Indisponível)
+// ===========================
+app.delete('/produtos/:id', verificaToken, (req, res) =>{
+    
+});
+
 module.exports = app;
