@@ -108,8 +108,9 @@ app.get('/produtos', verificaToken, (req, res) =>{
 app.get('/produtos/:id', verificaToken, (req, res) =>{
     let id = re.params.id;
 
-    Produto.findById(id, (err, produtoDB) =>{
+    Produto.findById(id)
+        .populate('usuario','nome email')
+        .populate('categoria','descricao')
 
-    });
 });
 module.exports = app;
