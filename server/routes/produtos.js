@@ -112,7 +112,20 @@ app.get('/produtos/:id', verificaToken, (req, res) =>{
         .populate('usuario','nome email')
         .populate('categoria','descricao')
         .exec ((err, produtoDB)=>{
-
+            if(err){
+                return res.status(500).json({
+                    ok: false,
+                    err
+                });
+            }
+            if(!produtoDB){
+                return res.status(400).json({
+                    ok: false,
+                    err:{
+                        message: 'O Produto não existe!'
+                    }
+                });
+            }
         });
 
 });
