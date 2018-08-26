@@ -84,5 +84,6 @@ app.put('/produtos/:id', (req, res) =>{
     desde = Number(desde);
 
     Produto.find({disponivel:true})
+        .skip(desde)
 });
 module.exports = app;
