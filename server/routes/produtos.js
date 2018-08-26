@@ -146,7 +146,11 @@ app.get('/produtos/busca/:termo', verificaToken, (req, res) =>{
                     ok: false,
                     err
                 });
-            }           
+            }  
+            res.json({
+                ok:true,
+                produtos
+            });      
         });
 });
 
