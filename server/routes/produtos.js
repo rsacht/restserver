@@ -164,6 +164,11 @@ app.delete('/produtos/:id', verificaToken, (req, res) =>{
                     err
                 });
             }
+            res. json({
+                ok:true,
+                produto: produtoIndisponivel,
+                mensagem: 'Produto Indisponibilizado'
+            });
         });
 
     });
