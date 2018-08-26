@@ -111,6 +111,9 @@ app.get('/produtos/:id', verificaToken, (req, res) =>{
     Produto.findById(id)
         .populate('usuario','nome email')
         .populate('categoria','descricao')
+        .exec ((err, produtoDB)=>{
+
+        });
 
 });
 module.exports = app;
