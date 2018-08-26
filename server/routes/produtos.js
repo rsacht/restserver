@@ -138,7 +138,7 @@ app.get('/produtos/:id', verificaToken, (req, res) =>{
 // Excluir um Produto (Torna Indisponível)
 // ===========================
 app.delete('/produtos/:id', verificaToken, (req, res) =>{
-    
+    let id = req.params.id;
 });
 
 module.exports = app;
