@@ -85,5 +85,6 @@ app.put('/produtos/:id', (req, res) =>{
 
     Produto.find({disponivel:true})
         .skip(desde)
+        .limit(5)
 });
 module.exports = app;
