@@ -155,7 +155,7 @@ app.delete('/produtos/:id', verificaToken, (req, res) =>{
                 }
             });
         }
-        produtoDB.disponible = false;
+        produtoDB.disponivel = false;
 
         produtoDB.save((err, produtoIndisponivel) =>{
             if(err){
