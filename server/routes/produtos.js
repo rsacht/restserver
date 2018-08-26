@@ -75,4 +75,11 @@ app.put('/produtos/:id', (req, res) =>{
     });
 });
 
+
+// ===========================
+// Lista Produtos
+// ===========================
+app.put('/produtos/:id', (req, res) =>{
+
+});
 module.exports = app;
