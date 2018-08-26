@@ -16,7 +16,8 @@ app.put('/uploads', function(req, res) {
         });
     }
     let arquivo = req.files.arquivo;
-    let nomeArquivo = arquivo.name.split('.');
+    let nomeCortado = arquivo.name.split('.');
+    let extensao = nomeCortado[nomeCortado.length -1];
 
     console.log(nomeArquivo);
 
