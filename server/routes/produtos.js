@@ -87,5 +87,6 @@ app.put('/produtos/:id', (req, res) =>{
         .skip(desde)
         .limit(5)
         .populate('usuario', 'nome email')
+        .populate('categoria', 'descricao')
 });
 module.exports = app;
