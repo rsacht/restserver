@@ -23,7 +23,12 @@ app.put('/uploads', function(req, res) {
     let extensoesValidas = ['png','jpg','jpeg','gif'];
 
     if(extensoesValidas.indexOf(extensao) < 0){
-
+        return res.status(400).json({
+            ok: false,
+            err:{
+                message: 'As extensões permitidas são: ' + extensoesValidas.join(', ')
+            }
+        });
     }
 
     arquivo.mv('uploads/filename.jpg', (err) => {
