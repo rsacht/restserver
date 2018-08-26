@@ -15,4 +15,5 @@ app.put('/upload', function(req, res) {
             }
         });
     }
+    let sampleFile = req.files.arquivo;
 });
