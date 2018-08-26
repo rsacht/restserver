@@ -155,6 +155,7 @@ app.delete('/produtos/:id', verificaToken, (req, res) =>{
                 }
             });
         }
+        produtoDB.disponible = false;
     });
 });
 
