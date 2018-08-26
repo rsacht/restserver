@@ -82,5 +82,7 @@ app.put('/produtos/:id', (req, res) =>{
 app.put('/produtos/:id', (req, res) =>{
     let desde = req.query.desde || 0;
     desde = Number(desde);
+
+    Produto.find({disponivel:true})
 });
 module.exports = app;
