@@ -101,4 +101,11 @@ app.get('/produtos', verificaToken, (req, res) =>{
             });
         });
 });
+
+// ===========================
+// Mostra um Produto
+// ===========================
+app.get('/produtos/:id', verificaToken, (req, res) =>{
+    
+});
 module.exports = app;
