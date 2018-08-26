@@ -106,7 +106,7 @@ app.get('/produtos', verificaToken, (req, res) =>{
 // Mostra um Produto
 // ===========================
 app.get('/produtos/:id', verificaToken, (req, res) =>{
-    let id = re.params.id;
+    let id = req.params.id;
 
     Produto.findById(id)
         .populate('usuario','nome email')
