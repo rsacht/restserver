@@ -86,5 +86,6 @@ app.put('/produtos/:id', (req, res) =>{
     Produto.find({disponivel:true})
         .skip(desde)
         .limit(5)
+        .populate('usuario', 'nome email')
 });
 module.exports = app;
