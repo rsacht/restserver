@@ -80,6 +80,7 @@ app.put('/produtos/:id', (req, res) =>{
 // Lista Produtos
 // ===========================
 app.put('/produtos/:id', (req, res) =>{
-
+    let desde = req.query.desde || 0;
+    desde = Number(desde);
 });
 module.exports = app;
