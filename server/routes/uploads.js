@@ -5,8 +5,8 @@ const app = express();
 // default options
 app.use(fileUpload());
 
-app.put('/uploads/:tipo/:id', function(req, res) {
-    let tipo = req.params.tipo;
+app.put('/uploads/:destinatario/:id', function(req, res) {
+    let destinatario = req.params.destinatario;
     let id = req.params.id;
 
     if (!req.files){
@@ -15,6 +15,17 @@ app.put('/uploads/:tipo/:id', function(req, res) {
                 ok: false,
                 err: {
                     message: 'Não há arquivos para upload.'
+            }
+        });
+    }
+    //Validação do Destinatário do Arquivo
+    let destValidos = ['produto', 'usuario'];
+
+    if(destValidos.indexOf(destinatario) < 0){
+        return res.status(400).json({
+            ok: false,
+            err:{
+                message: 'Os destinatários permitidos são: ' + destValidos.join(', '),
             }
         });
     }
