@@ -47,6 +47,10 @@ app.put('/uploads/:destinatario/:id', function(req, res) {
         });
     }
 
+    //Mudando o nome do arquivo 
+    //Deve ser único para não subscrever o mais antigo
+    let nomeArquivo = `${id}.${extensao}`;
+    
     arquivo.mv(`uploads/${destinatario}/${arquivo.name}`, (err) => {
         if (err)
             return res.status(500).json({
