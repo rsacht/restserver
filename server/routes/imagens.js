@@ -9,10 +9,13 @@ app.get('/imagem/:destinatario/:img', (req, res) =>{
     let img = req.params.img;
 
     let pathImagem = path.resolve(__dirname, `../../uploads/${destinatario}/${img}`);
-    let noImagePath = path.resolve(__dirname,'../assets/no-image.jpg')
-
-    res.sendfile(noImagePath);
-
+    
+    if(fs.existsSync(pathImagem)){
+        res.sendFile(pathImagem);
+    }else{
+        let noImagePath = path.resolve(__dirname,'../assets/no-image.jpg');
+        res.sendfile(noImagePath);
+    }
 });
 
 module.exports = app;
