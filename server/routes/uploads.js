@@ -32,7 +32,7 @@ app.put('/uploads', function(req, res) {
         });
     }
 
-    arquivo.mv('uploads/filename.jpg', (err) => {
+    arquivo.mv(`uploads/${arquivo.name}`, (err) => {
         if (err)
             return res.status(500).json({
                 ok: false,
