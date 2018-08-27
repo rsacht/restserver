@@ -2,6 +2,7 @@ const express = require('express');
 const fileUpload = require('express-fileupload');
 const app = express();
 const Usuario = require('../models/usuario');
+const Produto = require('../models/produto');
 const fs = require('fs');
 const path = require('path');
 
@@ -97,6 +98,38 @@ function imagemUsuario(id, res, nomeArquivo){
     });
 }
 
+function imagemProduto(id, res, nomeArquivo){
+    Produto.findById(id, (err, produtoDB) =>{
+        if(err){
+            excluirArquivo(nomeArquivo, 'produtos');
+            return res.status(500).json({
+                ok:false,
+                err
+            })
+        }
+        if(!produtoDB){
+            excluirArquivo(nomeArquivo, 'produtos');
+            return res.status(400).json({
+                ok:false,
+                err:{
+                    message: 'Este produto não existe!'
+                }
+            });
+        }
+
+        excluirArquivo(produtoDB.img, 'produtos');
+
+        //Atualiza o Nome da Imagem no Banco de Dados
+        produtoDB.img = nomeArquivo;
+        produtoDB.save((err, produtoAtualizado)=>{
+            res.json({
+                ok:true,
+                produto: produtoAtualizado,
+                img: nomeArquivo
+            });
+        });
+    });
+}
 function excluirArquivo(nomeArquivo, destinatario){
     //Excluindo a Imagem Anterior do Usuário
     //Define o caminho do arquivo anterior com base no nome da imagem no banco de dados
