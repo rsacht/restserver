@@ -61,7 +61,12 @@ app.put('/uploads/:destinatario/:id', function(req, res) {
                 err
             });    
         //A imagem é carregada aqui
-        imagemUsuario(id, res, nomeArquivo);
+        if(destinatario === 'usuarios'){
+            imagemUsuario(id, res, nomeArquivo);
+        }else{
+            imagemProduto(id, res, nomeArquivo);
+        }
+        
     });
 });
 
