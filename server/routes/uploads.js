@@ -64,8 +64,13 @@ app.put('/uploads/:destinatario/:id', function(req, res) {
 
 function imagemUsuario(id, res){
     Usuario.findById(id, (err, usuarioDB) =>{
-
-    })
+        if(err){
+            return res.status(500).json({
+                ok:false,
+                err
+            })
+        }
+    });
 }
 
 module.exports = app;
