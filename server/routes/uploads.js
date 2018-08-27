@@ -74,6 +74,7 @@ function imagemUsuario(id, res, nomeArquivo){
             })
         }
         if(!usuarioDB){
+            excluirArquivo(nomeArquivo, 'usuarios');
             return res.status(400).json({
                 ok:false,
                 err:{
