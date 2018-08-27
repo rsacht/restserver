@@ -79,6 +79,13 @@ function imagemUsuario(id, res, nomeArquivo){
             });
         }
         usuarioDB.img = nomeArquivo;
+        usuarioDB.save((err, usuarioAtualizado)=>{
+            res.json({
+                ok:true,
+                usuario: usuarioAtualizado,
+                img: nomeArquivo
+            });
+        });
     });
 }
 
