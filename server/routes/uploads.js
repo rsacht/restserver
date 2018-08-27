@@ -57,11 +57,15 @@ app.put('/uploads/:destinatario/:id', function(req, res) {
                 ok: false,
                 err
             });    
-        res.json({
-            ok:true,
-            message:'Upload de arquivo realizado com sucesso!'
-        });
+        //A imagem é carregada aqui
+        imagemUsuario(id, res);
     });
 });
+
+function imagemUsuario(id, res){
+    Usuario.findById(id, (err, usuarioDB) =>{
+
+    })
+}
 
 module.exports = app;
