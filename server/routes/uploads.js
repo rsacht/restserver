@@ -51,7 +51,7 @@ app.put('/uploads/:destinatario/:id', function(req, res) {
     //Deve ser único para não subscrever o mais antigo
     let nomeArquivo = `${id}-${new Date().getMilliseconds()}.${extensao}`;
 
-    arquivo.mv(`uploads/${destinatario}/${arquivo.name}`, (err) => {
+    arquivo.mv(`uploads/${destinatario}/${nomeArquivo}`, (err) => {
         if (err)
             return res.status(500).json({
                 ok: false,
