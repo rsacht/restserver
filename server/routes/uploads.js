@@ -2,6 +2,8 @@ const express = require('express');
 const fileUpload = require('express-fileupload');
 const app = express();
 const Usuario = require('../models/usuario');
+const fs = require('fs');
+const path = require('path');
 
 // default options
 app.use(fileUpload());
