@@ -67,6 +67,7 @@ app.put('/uploads/:destinatario/:id', function(req, res) {
 function imagemUsuario(id, res, nomeArquivo){
     Usuario.findById(id, (err, usuarioDB) =>{
         if(err){
+            excluirArquivo(nomeArquivo, 'usuarios');
             return res.status(500).json({
                 ok:false,
                 err
@@ -80,7 +81,7 @@ function imagemUsuario(id, res, nomeArquivo){
                 }
             });
         }
-        
+
         excluirArquivo(usuarioDB.img, 'usuarios');
 
         //Atualiza o Nome da Imagem no Banco de Dados
