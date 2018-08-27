@@ -80,6 +80,15 @@ function imagemUsuario(id, res, nomeArquivo){
                 }
             });
         }
+        //Excluindo a Imagem Anterior do Usuário
+        //Define o caminho do arquivo anterior com base no nome da imagem no banco de dados
+        let pathImagem = path.resolve(__dirname, `../../uploads/usuarios/${usuarioDB.img}`);
+        //Verifica se a imagem existe no servidor
+        if(fs.existsSync(pathImagem)){
+            //Se sim, exclui a imagem
+            fs.unlinkSync(pathImagem);
+        }
+        //Atualiza o Nome da Imagem no Banco de Dados
         usuarioDB.img = nomeArquivo;
         usuarioDB.save((err, usuarioAtualizado)=>{
             res.json({
