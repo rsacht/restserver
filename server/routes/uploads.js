@@ -5,7 +5,10 @@ const app = express();
 // default options
 app.use(fileUpload());
 
-app.put('/uploads', function(req, res) {
+app.put('/uploads/:tipo/:id', function(req, res) {
+    let tipo = req.params.tipo;
+    let id = req.params.id;
+
     if (!req.files){
         return res.status(400)
             .json({
