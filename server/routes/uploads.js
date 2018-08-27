@@ -1,6 +1,7 @@
 const express = require('express');
 const fileUpload = require('express-fileupload');
 const app = express();
+const Usuario = require('../models/usuario');
 
 // default options
 app.use(fileUpload());
@@ -25,7 +26,7 @@ app.put('/uploads/:destinatario/:id', function(req, res) {
         return res.status(400).json({
             ok: false,
             err:{
-                message: 'Os destinatários permitidos são: ' + destValidos.join(', '),
+                message: 'Os destinatários permitidos são: ' + destValidos.join(', ')
             }
         });
     }
