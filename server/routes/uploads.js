@@ -70,6 +70,14 @@ function imagemUsuario(id, res){
                 err
             })
         }
+        if(!usuarioDB){
+            return res.status(400).json({
+                ok:false,
+                err:{
+                    message: 'Este usuário não existe!'
+                }
+            })
+        }
     });
 }
 
