@@ -47,7 +47,7 @@ app.put('/uploads/:destinatario/:id', function(req, res) {
         });
     }
 
-    arquivo.mv(`uploads/${arquivo.name}`, (err) => {
+    arquivo.mv(`uploads/${destinatario}/${arquivo.name}`, (err) => {
         if (err)
             return res.status(500).json({
                 ok: false,
