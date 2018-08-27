@@ -20,7 +20,7 @@ app.put('/uploads/:destinatario/:id', function(req, res) {
         });
     }
     //Validação do Destinatário do Arquivo
-    let destValidos = ['produto', 'usuario'];
+    let destValidos = ['produtos', 'usuarios'];
 
     if(destValidos.indexOf(destinatario) < 0){
         return res.status(400).json({
