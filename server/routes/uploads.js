@@ -58,11 +58,11 @@ app.put('/uploads/:destinatario/:id', function(req, res) {
                 err
             });    
         //A imagem é carregada aqui
-        imagemUsuario(id, res);
+        imagemUsuario(id, res, nomeArquivo);
     });
 });
 
-function imagemUsuario(id, res){
+function imagemUsuario(id, res, nomeArquivo){
     Usuario.findById(id, (err, usuarioDB) =>{
         if(err){
             return res.status(500).json({
@@ -76,8 +76,9 @@ function imagemUsuario(id, res){
                 err:{
                     message: 'Este usuário não existe!'
                 }
-            })
+            });
         }
+        usuarioDB.img = nomeArquivo;
     });
 }
 
