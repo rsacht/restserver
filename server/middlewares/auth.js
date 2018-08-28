@@ -57,7 +57,19 @@ let verificaAdminRole = (req, res, next) =>{
 // Em Body faça a alteração dos dados e execute o PUT
 // Para efetuar o DELETE, cole o id do usuário e execute
 
+//===========================
+// Verifica Token para a Imagem
+//===========================
+let verificaTokenImg = (req, res, next) =>{
+    let token = req.query.token;
+
+    res.json({
+        token
+    });
+}
+
 module.exports ={
     verificaToken,
-    verificaAdminRole
+    verificaAdminRole,
+    verificaTokenImg
 }
